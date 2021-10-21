@@ -1,0 +1,61 @@
+<%- include('../partials/header') %>
+
+    <div class="nameStudent">
+        <label for="formGroupNameStudent" class="form-label">Student's Name</label>
+        <br>
+        <input type="text" class="form-control" id="formGroupNameStudent" placeholder="your name here">
+    </div>
+    <br>
+    <br>
+    <div class="taskName">
+        <label for="formGroupTaskName" class="form-label">Task's Name</label>
+        <br>
+        <input type="text" class="form-control" id="formGroupTaskName" placeholder="your new task here">
+    </div>
+    <br>
+    <br>
+    <div class="taskSubject">
+        <label for="formGroupExampleInput2" class="form-label">Task's Subject</label>
+        <br>
+        <input type="text" class="form-control" id="formGroupTaskSubject" placeholder="your new task subject here">
+        <div class="teacherName">
+            <br>
+            <br>
+            <label for="formGroupTeacherName" class="form-label">Teacher's Name</label>
+            <br>
+            <input type="text" class="form-control" id="formGroupTeacherName" placeholder="your teacher's name here">
+            <div class="totalTaskNumber">
+                <br>
+                <br>
+                <label for="formGroupTotalTaskNumber" class="form-label">Task's Total Number</label>
+                <br>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected>Select total task number</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <div class="Deadline">
+                    <br>
+                    <br>
+                    <div>
+                    <label for="formGroupDeadLine" class="form-label">Task's deadline</label>
+                    <br>
+                    <input type="date" id="start" name="trip-start" value="2018-07-22" min="2021-10-21"
+                        max="2021-10-31">
+                        </div>
+                        <br>
+                        <br>
+                        <div>
+                        <button type="button" class="btn btn-add">Add</button>
+                        <button type="button" class="btn btn-cancel">Cancel</button>
+                        </div>
+
+<%- include('../partials/footer') %>

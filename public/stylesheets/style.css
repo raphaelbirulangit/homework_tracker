@@ -1,0 +1,44 @@
+.card-body {
+    background:lightcyan;
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06); 
+    width: 15%;
+    height: 25vw;
+    object-fit: cover;
+   
+}
+
+
+table {
+    background: lightcyan;
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06); 
+}
+
+td, th {
+    border: 1px solid #999;
+    padding: 0.5rem;
+  }
+
+input {
+    size: 6px;
+
+}
+
+
+button {
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06); 
+    background-color:azure
+}
