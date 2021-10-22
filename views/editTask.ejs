@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/task/<%= data.id %>/edit" method="post">
+        <h2>TASK <%= data.Task.taskName %></h2>
+        <br>
+        <label>Task Description:</label> <br>
+        <input type="text" value="<%= data.Task.taskDescription %>" name="description">
+        <br>
+        <label>Task Subject</label>
+        <input type="text" disabled="true" value="<%= data.Task.taskSubject %>" name="taskSubject">
+        <br>
+        <label>Deadline</label>
+        <input type="text" disabled="true" value="<%= data.Task.deadline %>" name="deadline">
+        <br>
+        <label>Number of assignments: </label>
+        <input disabled="true" value="<%= data.Task.taskNumber %>" name="taskNumber"/>
+        <br>
+        <label>Number of assignments done: </label>
+        <input value="<%= data.progress %>" name="progress"/> <br>
+        <input type="submit" value="Edit Task" />
+    </form>
+</div>
+</div>
+</body>
+</html>
