@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card">
+    <div class="card-body">
+    <form action="/task/<%= studentData.id %>/add?studentId=<%= studentData.id %>" method="post">
+        <div class="nameStudent">
+            <label for="formGroupnameStudent" class="form-label">Student's Name</label>
+            <br>
+            <input type="text" class="form-control" name="studentName" id="formGroupExampleInput" value="<%= studentData.name %>" disabled="true">
+        </div>
+        <br>
+        <br>
+        <div class="taskName">
+            <label for="formGrouptaskName" class="form-label">Task's Name</label>
+            <br>
+            <input type="text" class="form-control" id="formGroupExampleInput2" name="taskName" placeholder="your new task here">
+        </div>
+        <br>
+        <br>
+        <div class="taskSubject">
+            <label for="formGrouptaskSubject" class="form-label">Task's Subject</label>
+            <br>
+            <input type="text" class="form-control" id="formGroupExampleInput2" name="taskSubject" placeholder="your new task subject here">
+            <div class="teacherName">
+                <br>
+                <br>
+                <label for="formGroupteacherName" class="form-label" >Teacher's Name</label>
+                <br>
+                <select name="teacherId" >
+                    <% for(let i in data) {%>
+                    <option value="<%= data[i].id %>"><%= data[i].name%></option>
+                    <% } %>
+                </select>
+                <div class="totalTaskNumber">
+                    <br>
+                    <br>
+                    <label for="formGrouptotalTaskNumber" class="form-label">Task's Total Number</label>
+                    <br>
+                    <input type="number" placeholder="number of question" name="taskNumber" >
+                    <div class="Deadline">
+                        <br>
+                        <br>
+                        <div>
+                            <label for="formGroupDeadline" class="form-label">Task's deadline</label>
+                            <br>
+                            <input type="date" id="start" name="deadline" value="2021-10-21" min="2021-10-21"
+                            max="2021-10-31">
+                        </div>
+                        <br>
+                        <br>
+                        <div>
+                            <button type="submit" class="btn btn-add">Add</button>
+                        </div>
+                    
+    </form>
+</div>
+</div>
+</body>
+</html>

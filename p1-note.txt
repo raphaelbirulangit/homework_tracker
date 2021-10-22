@@ -1,0 +1,126 @@
+-------------
+---Express---
+-------------
+middleware utk ambil req body 
+app.use(express.urlencoded({extended: true})
+pake ejs app.set('view engine','ejs')
+
+Module import const {<ModuleName>} = require("../models") <- dibantu sequelize
+
+semua static method dr Module promise .then(data =>) .catch(err =>)
+POST add item -> static method dr sequelize-> create({values(property of new item)}).then.catch
+  -> Module.create({objProperties}).then(data=>).catch(err=>)
+------------------------------------------------------------------------
+
+=== SEQUELIZE ===
+
+sequelize-cli -> bantu setup db pk terminal
+--terminal--
+npm init
+.gitignore
+npm i pg sequelize express ejs
+sequelize init -> ubah setting
+sequelize db:create
+------
+sequelize model:generate --name <tableName(singular)> --attributes <propertyName:TYPE,...>
+sequelize db:migrate
+---------------------------------
+
+-----------------------------
+---- edit existing table ----
+-----------------------------
+sequelize migration:generate --name <filename>
+--- sequelize.org -> query interface ---
+    -> edit to up:... 
+       ---addColumn---
+       return queryInterface.addColumn('<Tables>','<new_property>', {type: Sequelize.TYPE});
+    -> edit to down:... <- if undo
+       ---removeColumn---
+    return queryInterface.removeColumn('<Tables>', '<property>')
+sequelize db:migrate
+dont forget add said property to the class/model file
+-----------------
+
+---------------------
+--- create seeder ---
+---------------------
+sequelize seed:generate --name <fileName>
+ -> up:
+    - read file -> parse -> bulkInsert(<tableName>, <data>) --!dont forget createdAt updatedAt--
+    return queryInterface.bulkInsert('<Tables>', <data after processed>)
+ -> down:
+    return queryInterface.bulkDelete('<Tables>', null, {})
+sequelize db:seed:all
+for specific name --seed <fileName>
+------------------
+
+- sequelize.org Model (using promise)
+
+------------------------
+--- edit column name ---
+------------------------
+--> create migration -> renameColumn -> after migrate update property on model
+------------------------
+
+---------------------
+--- FOREIGN KEY ---
+---------------------
+- untuk 1-to-1 foreign key bisa diletakkan di mana saja
+- 1-to-many foreign key di many
+- foreign key use PascalCase
+- foreign key dibuat terpisah -> jika FK sudah ada tp blm di join, pk changeColumn
+- add a FK -> addColumn(  
+   '<Tables>','<FkId>', 
+   {type:Sequelize.TYPES, references:{model:'<parentTable>',key:'id'}},
+   onDelete: 'cascade', onUpdate: 'cascade'})
+    
+   down -> deleteColumn('Managers','BandId',{})
+
+- seeding
+   if json has id property -> loop array {delete el.id}
+   loop for createdAt and updatedAt
+
+--- Adding belongsTo & hasOne/hasMany --- !in Models folder -----
+--- sequelize association ---
+--- sequelize query interface
+
+- BelongsTo ditempatkan di model tempat foreign key berada.
+- hasOne ditempatkan di model yang merupakan tempat referensi dari foreign key.
+--> masuk di static associate(models) 
+   <not-FK-Tables>.hasOne(models.<FK-Tables>, {<foreignKey: "">}) di models folder
+--> jika foreign key PascalCase, {} tidak perlu diisi
+--> jika many to many, pakai hasOne -> hasMany
+--------------------------------
+
+----------------------------------------
+--- JOIN TABLE & CONDITION DATA SHOW ---
+----------------------------------------
+https://sequelize.org/master/variable/index.html#static-variable-Op
+-> import all tables including JOIN table
+<Table>.findAll({
+   include:[{model:<Table with FK>}]
+   }).then()
+--------------------------
+
+---------------------------
+--- hooks & validations ---
+---------------------------
+
+--- validation ---
+https://sequelize.org/master/manual/validations-and-constraints.html
+- dilakukan di <Table>.init() di Models
+   property: {
+      type: ,
+      validate: {
+
+      }
+   }
+-----------------------
+---- hooks ---
+https://sequelize.org/master/manual/hooks.html
+- for now just beforeCreate((data,options) => { *no return needed*})
+-----------------------
+------------------
+redirect with ?errors=...
+tampung di req.query.errors
+------------------
