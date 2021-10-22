@@ -4,6 +4,7 @@ const formatDeadline = require("../helper/formatDeadline")
 
 class Controller {
   static showLogin(req, res) {}
+
   static showHome(req, res) {
     Student.findAll({
       include: [{
@@ -21,48 +22,57 @@ class Controller {
       res.send(err);
     })
   }
+
   static addTaskForm(req,res) {
-    let id = req.params.id;
-    let studentData = null;
-    Student.findByPk(id, {
-    })
+    Teacher.findAll()
     .then(data => {
-      studentData = data;
-      return Teacher.findAll();
-    })
-    .then(data => {
-      res.render("addTask",{studentData, data});
+      res.render("addTask",{data});
     })
     .catch(err => {
       res.send(err);
     })
   }
+
   static addTask(req, res) {
-    let {taskSubject, teacherId, taskName, taskNumber, deadline} = req.body;
-    let datas = {taskSubject, teacherId, taskName, taskNumber, deadline};
-    datas.studentId = req.query.studentId;
-    console.log(req.body)
-    console.log(datas)
+    let {taskSubject, taskName, taskNumber, deadline, taskDescription} = req.body;
     let newTask = {
       taskName: taskName,
-      taskDescription: "task deskripsi",
+      taskDescription: taskDescription,
       taskSubject: taskSubject,
       deadline: new Date (deadline),
-      
+      taskNumber: taskNumber,
     }
     Task.create(newTask)
-    .then(data => {
-      Student.update({taskID: data.id, teacherID: teacherId}, {
-        where: {
-          id: req.query.studentId
-        }
-      })
-    })
     .then(data => {
       res.redirect("/home");
     })
     .catch(err => {
       res.send(err);
+    })
+  }
+
+  static editTaskForm(req, res) {
+    let studentId = req.params.id;
+    Student.findByPk(studentId, {
+      include: [{
+        model: Task,
+      }]
+    })
+    .then(data => {
+      console.log(data.Task)
+      res.render("editTask", {data})
+    })
+    .catch(err => {
+      res.send(err);
+    })
+  }
+
+  static editTask(req, res) {
+    let {description, taskSubject, deadline, taskNumber, progress} = req.body;
+    res.send({description, taskSubject, deadline, taskNumber, progress} );
+    Student.update({progress:progress})
+    .then(data => {
+      res.redirect("/home");
     })
   }
 }

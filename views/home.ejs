@@ -9,7 +9,9 @@
 
 </head>
 <body>
-
+    <nav>
+        <a href="/task/add">add Task</a>
+    </nav>
     <div>
         <table class="table-bordered">
             <thead>
@@ -39,8 +41,8 @@
                   </td>
                   <td><%= formatDeadline(el.Task.deadline) %></td>
                   <td>
-                      <a href="/task/<%= el.id %>/add">Edit</a>
-                      <button type="button" class="btn btn-delete">Delete</button>
+                      <a href="/task/<%= el.id %>/edit">Edit Progress</a>
+                      <button type="button" class="btn btn-delete">Change Task</button>
                     </td>
               </tr>
               <% }) %>  

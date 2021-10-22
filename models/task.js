@@ -22,9 +22,16 @@ module.exports = (sequelize, DataTypes) => {
       taskDescription: DataTypes.STRING,
       taskSubject: DataTypes.STRING,
       deadline: DataTypes.DATE,
+      taskNumber: DataTypes.INTEGER,
     },
     {
       sequelize,
+      hooks:{
+        beforeCreate: (instance, options) => {
+          instance.createdAt = new Date();
+          instance.updateAt = new Date();
+        }
+      },
       modelName: "Task",
     }
   );

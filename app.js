@@ -11,9 +11,10 @@ app.get("/", (req, res) => {
 });
 app.get("/login", Controller.showLogin);
 app.get("/home", Controller.showHome);
-app.get("/task/:id/add", Controller.addTaskForm);
-app.post("/task/:id/add", Controller.addTask);
-// app.get("")
+app.get("/task/add", Controller.addTaskForm);
+app.post("/task/add", Controller.addTask);
+app.get("/task/:id/edit", Controller.editTaskForm);
+app.post("/task/:id/edit", Controller.editTask);
 
 
 app.listen(port, () => {

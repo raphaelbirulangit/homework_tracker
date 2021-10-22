@@ -10,13 +10,7 @@
 <body>
     <div class="card">
     <div class="card-body">
-    <form action="/task/<%= studentData.id %>/add?studentId=<%= studentData.id %>" method="post">
-        <div class="nameStudent">
-            <label for="formGroupnameStudent" class="form-label">Student's Name</label>
-            <br>
-            <input type="text" class="form-control" name="studentName" id="formGroupExampleInput" value="<%= studentData.name %>" disabled="true">
-        </div>
-        <br>
+    <form action="/task/add" method="post">
         <br>
         <div class="taskName">
             <label for="formGrouptaskName" class="form-label">Task's Name</label>
@@ -32,6 +26,10 @@
             <div class="teacherName">
                 <br>
                 <br>
+            <label>Task Description</label><br>
+            <textarea rows="4" cols="30" name="taskDescription">
+
+            </textarea>
                 <label for="formGroupteacherName" class="form-label" >Teacher's Name</label>
                 <br>
                 <select name="teacherId" >

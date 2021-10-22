@@ -23,9 +23,17 @@ module.exports = (sequelize, DataTypes) => {
       taskID: DataTypes.INTEGER,
       teacherID: DataTypes.INTEGER,
       score: DataTypes.INTEGER,
+      progress: DataTypes.INTEGER,
     },
     {
       sequelize,
+      hooks: {
+        beforeCreate: (instance, option) => {
+        instance.score = 0;
+        instance.progress = 0;
+        instance.createdAt = new Date();
+        instance.updatedAt = new Date();
+      }},
       modelName: "Student",
     }
   );
